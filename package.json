@@ -1,6 +1,6 @@
 {
   "name": "carbono-json-messages",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@bitbucket.org:carbonoio/carbono-json-messages.git"
+    "url": "https://bitbucket.org/carbonoio/carbono-json-messages.git"
   },
   "author": "",
   "license": "MIT",
