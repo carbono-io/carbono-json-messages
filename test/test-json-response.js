@@ -168,5 +168,22 @@ describe('Testator', function () {
                 new JsonMessages();
             }).should.throw();
         });
+
+        it('object using version 1.0', function () {
+            var resp = new JsonMessages({apiVersion: '1.0'});
+            resp.setData(
+                {
+                    id: '1234',
+                    items: [{foo: 'bar'}],
+                }
+            );
+            var json   = JSON.parse(resp.toJSON());
+            var object = resp.toObject();
+
+            json.id.should.be.equals(object.id);
+            json.apiVersion.should.be.equals(object.apiVersion);
+            json.data.id.should.be.equals(object.data.id);
+            json.data.items[0].foo.should.be.equals(object.data.items[0].foo);
+        });
     });
 });
