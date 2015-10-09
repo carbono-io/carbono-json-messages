@@ -52,6 +52,22 @@ describe('Testator', function () {
                 .should.be.equals('987');
         });
 
+        it('setting method field', function () {
+            var method = 'Baz';
+            var resp = new JsonMessages({apiVersion: '1.0', method: method});
+            resp.setData(
+                {
+                    id: '1234',
+                    items: [{foo: 'bar'}],
+                }
+            );
+            var json = JSON.parse(resp.toJSON());
+
+            should.exist(json.method, 'json.method');
+            json.method
+                .should.be.equals(method);
+        });
+
         it('generate an simple error message using JSON', function () {
             var resp = new JsonMessages({id: '987', apiVersion: '1.0'});
             resp.setError(
