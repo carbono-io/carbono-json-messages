@@ -52,6 +52,22 @@ describe('Testator', function () {
                 .should.be.equals('987');
         });
 
+        it('setting method field', function () {
+            var method = 'Baz';
+            var resp = new JsonMessages({apiVersion: '1.0', method: method});
+            resp.setData(
+                {
+                    id: '1234',
+                    items: [{foo: 'bar'}],
+                }
+            );
+            var json = JSON.parse(resp.toJSON());
+
+            should.exist(json.method, 'json.method');
+            json.method
+                .should.be.equals(method);
+        });
+
         it('generate an simple error message using JSON', function () {
             var resp = new JsonMessages({id: '987', apiVersion: '1.0'});
             resp.setError(
@@ -167,6 +183,23 @@ describe('Testator', function () {
             (function () {
                 new JsonMessages();
             }).should.throw();
+        });
+
+        it('object using version 1.0', function () {
+            var resp = new JsonMessages({apiVersion: '1.0'});
+            resp.setData(
+                {
+                    id: '1234',
+                    items: [{foo: 'bar'}],
+                }
+            );
+            var json   = JSON.parse(resp.toJSON());
+            var object = resp.toObject();
+
+            json.id.should.be.equals(object.id);
+            json.apiVersion.should.be.equals(object.apiVersion);
+            json.data.id.should.be.equals(object.data.id);
+            json.data.items[0].foo.should.be.equals(object.data.items[0].foo);
         });
     });
 });

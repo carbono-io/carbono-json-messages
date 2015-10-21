@@ -7,6 +7,6 @@
  * @author Carbono Team
  * @module carbono-json-messages
  */
-var CarbonoJsonMessages = require('./lib/json-messages.js');
+var CarbonoJsonMessages = require('./lib/json-messages');
 
 module.exports = CarbonoJsonMessages;
